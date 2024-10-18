@@ -44,18 +44,17 @@ body{
     align-items: center;
     transition-property: all;
     transition-duration: 1s;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
 }
 .box:hover{
     transform: scale(1.1);
-    background-color: rgba(0, 0, 0, 0.1);
+    background-color: rgba(0, 0, 0, 0.7);
 }
 .game-status{
     display: flex;
     gap: 1rem;
     align-items: center;
     color: white;
-    transition: all;
-    transition: 1s;
 }
 .reset-btn{
     padding: 0.5rem 1rem;
