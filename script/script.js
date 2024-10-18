@@ -19,7 +19,7 @@ const startGame = ()=>{
     container.style.display = "grid";
     startBtn.style.display = 'none';
     resetBtn.style.display = 'block';
-    statusText.style.display = 'block';
+    statusText.style.display = 'flex';
     statusText.innerHTML = `Current Player is <span class="special-text">${nameList[turn]}</span>`
 }
 
