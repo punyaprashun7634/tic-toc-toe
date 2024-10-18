@@ -1,10 +1,27 @@
 let tiles = document.querySelectorAll('.box');
 let statusText = document.querySelector('.game-status');
 let resetBtn = document.querySelector('.reset-btn');
+let startBtn = document.querySelector('.start-btn');
+let container = document.querySelector('.container');
+
 
 let turn = 'O';
 let currState = Array(9).fill("")
 let gameOver = false;
+let nameList;
+const startGame = ()=>{
+    let player1 = prompt("Enter player 1 name : ");
+    let player2 = prompt("Enter player 2 name : ");
+    nameList = {
+        'O' : player1?player1 : 'O',
+        'X' : player2?player2 : 'X',
+    }
+    container.style.display = "grid";
+    startBtn.style.display = 'none';
+    resetBtn.style.display = 'block';
+    statusText.style.display = 'block';
+    statusText.innerHTML = `Current Player is <span class="special-text">${nameList[turn]}</span>`
+}
 
 const getWinner = (currState)=> {
     // 0 1 2
@@ -36,11 +53,11 @@ const updateStatus = ()=>{
         gameOver = !gameOver;
     }
     else if (getWinner(currState)){
-        statusText.innerHTML = `Winner is <span class="special-text">${getWinner(currState)}</span>`;
+        statusText.innerHTML = `Winner is <span class="special-text">${nameList[getWinner(currState)]}</span>`;
         gameOver = !gameOver;
     }
     else{
-        statusText.innerHTML = `Current Player is <span class="special-text">${turn}</span>`
+        statusText.innerHTML = `Current Player is <span class="special-text">${nameList[turn]}</span>`
     }
 }
 
@@ -52,10 +69,16 @@ const resetGame = ()=>{
     tiles.forEach((tile)=>{
         tile.innerHTML = ""
     })
+    container.style.display = "none";
+    startBtn.style.display = 'block';
+    resetBtn.style.display = 'none';
+    statusText.style.display = 'none';
 }
-resetBtn.addEventListener('click', ()=>{
-    resetGame();
+
+startBtn.addEventListener('click', ()=>{
+    startGame();
 })
+
 tiles.forEach((tile, ind)=>{
     tile.addEventListener('click', ()=>{
         if(!gameOver && tile.innerHTML==""){
@@ -66,4 +89,8 @@ tiles.forEach((tile, ind)=>{
             updateStatus();
         }
     })
+})
+
+resetBtn.addEventListener('click', ()=>{
+    resetGame();
 })
