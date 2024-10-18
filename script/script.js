@@ -9,12 +9,14 @@ let turn = 'O';
 let currState = Array(9).fill("")
 let gameOver = false;
 let nameList;
+
 const startGame = ()=>{
+    let namePattern = /^[a-zA-Z][a-zA-Z0-9_\s]*/
     let player1 = prompt("Enter player 1 name : ");
     let player2 = prompt("Enter player 2 name : ");
     nameList = {
-        'O' : player1?player1 : 'O',
-        'X' : player2?player2 : 'X',
+        'O' : player1.match(namePattern)?player1 : 'O',
+        'X' : player2.match(namePattern)?player2 : 'X',
     }
     container.style.display = "grid";
     startBtn.style.display = 'none';
@@ -92,5 +94,6 @@ tiles.forEach((tile, ind)=>{
 })
 
 resetBtn.addEventListener('click', ()=>{
+    if(prompt("Are you sure wanna reset?"))
     resetGame();
 })
