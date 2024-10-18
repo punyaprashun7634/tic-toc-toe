@@ -60,8 +60,8 @@ tiles.forEach((tile, ind)=>{
     tile.addEventListener('click', ()=>{
         if(!gameOver && tile.innerHTML==""){
             tile.innerHTML = turn;
-            turn =='O' ? turn='X' : turn='O';
             currState[ind] = turn;
+            turn =='O' ? turn='X' : turn='O';
             console.log(currState);
             updateStatus();
         }
